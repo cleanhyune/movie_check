@@ -1,11 +1,8 @@
 server:
   port: 8080
 spring:
-  datasource:
-    driver-class-name: oracle.jdbc.driver.OracleDriver
-    username: movie_admin
-    password: 1234
-    url: jdbc:oracle:thin:@localhost:1521:XE
   jpa:
     hibernate:
       ddl-auto: update
+  profiles:
+    active: grove

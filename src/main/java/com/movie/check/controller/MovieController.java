@@ -4,8 +4,10 @@ import com.movie.check.configuration.customError.MovieNotFoundException;
 import com.movie.check.dto.ApiResponse;
 import com.movie.check.dto.MovieDto;
 import com.movie.check.service.MovieService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,16 +22,18 @@ import static com.movie.check.dto.ApiResponse.apiResponse;
 public class MovieController {
 
     private final MovieService movieService;
-
+    
     @GetMapping
-    public ApiResponse<List<MovieDto>> findMovies() {
+    @ApiOperation(value = "영화 리스트 반환", notes = "조건에 맞는 영화리스트를 반환")
+    public ResponseEntity<ApiResponse<List<MovieDto>>> findMovies() {
         List<MovieDto> movies = movieService.findMovies();
-        return apiResponse(movies);
+        return ResponseEntity.ok(apiResponse(movies));
     }
 
     @GetMapping("/{movieId}")
-    public ApiResponse<MovieDto> findMovieById(@PathVariable(name = "movieId") Long movieId) throws MovieNotFoundException {
+    @ApiOperation(value = "영화 반환", notes = "조건에 맞는 영화를 반환")
+    public ResponseEntity<ApiResponse<MovieDto>> findMovieById(@PathVariable(name = "movieId") Long movieId) throws MovieNotFoundException {
         MovieDto movieById = movieService.findMovieById(movieId);
-        return apiResponse(movieById);
+        return ResponseEntity.ok(apiResponse(movieById));
     }
 }

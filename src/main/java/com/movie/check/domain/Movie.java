@@ -23,12 +23,12 @@ public class Movie {
     private LocalDateTime runningTime;
     private String synopsis;
 
+    private Long fee;
+
     @Enumerated(EnumType.STRING)
     private Jenre jenre;
 
     private LocalDateTime openingDate;
     private String director;
-
-
 
 }
