@@ -3,11 +3,13 @@ package com.movie.check.domain;
 import com.movie.check.types.Jenre;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Data
 @Entity
 @Builder
 @NoArgsConstructor

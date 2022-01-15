@@ -26,8 +26,13 @@ public class Screening {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
-    public Reservation reserve(Member member) {
-        return new Reservation();
+    public Reservation reserve(Member member, Long adultCount, Long childCount) {
+        return Reservation.builder().build();
+    }
+
+    public Long getTotalFee(Long adultCount, Long childCount) {
+        Long fee = movie.getFee();
+        return fee * adultCount;
     }
 
 }

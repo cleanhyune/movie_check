@@ -5,6 +5,7 @@ import com.movie.check.domain.Screening;
 import com.movie.check.dto.ApiResponse;
 import com.movie.check.service.ReservationService;
 import com.movie.check.service.ScreeningService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +23,18 @@ public class ReservationController {
     @PutMapping("/{screeningId}")
     public ResponseEntity<ApiResponse> reservationMovie(
             @PathVariable("screeningId") Long screeningId,
-            @RequestParam("adultCount") Long adultCount,
-            @RequestParam("childCount") Long childCount,
+            @RequestBody RequestDto requestDto,
             Member member
     ) {
         Screening screening = screeningService.findByScreeningId(screeningId);
-        reservationService.reserve(screening, member, adultCount, childCount);
+        reservationService.reserve(screening, member, requestDto.getAdultCount(), requestDto.getChildCount());
         return ResponseEntity.ok(apiResponse("success"));
     }
 
+}
+
+@Data
+class RequestDto {
+    private Long adultCount;
+    private Long childCount;
 }

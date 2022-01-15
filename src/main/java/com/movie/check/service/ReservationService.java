@@ -15,18 +15,13 @@ public class ReservationService {
 
     private final ReservationDao reservationDao;
 
-    @Transactional
-    public void reserve(Screening screening, Member member) {
-        Reservation reserve = screening.reserve(member);
-        this.save(reserve);
-    }
-
-
     public void save(Reservation reservation) {
        reservationDao.save(reservation);
     }
 
+    @Transactional
     public void reserve(Screening screening, Member member, Long adultCount, Long childCount) {
-
+        Reservation reserve = screening.reserve(member, adultCount, childCount);
+        this.save(reserve);
     }
 }
