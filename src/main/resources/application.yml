@@ -5,4 +5,4 @@ spring:
     hibernate:
       ddl-auto: update
   profiles:
-    active: grove
+    active: home
