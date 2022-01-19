@@ -1,5 +1,6 @@
 package com.movie.check.controller;
 
+import com.movie.check.configuration.customError.MovieNotFoundException;
 import com.movie.check.domain.Member;
 import com.movie.check.domain.Screening;
 import com.movie.check.dto.ApiResponse;
@@ -25,7 +26,7 @@ public class ReservationController {
             @PathVariable("screeningId") Long screeningId,
             @RequestBody RequestDto requestDto,
             Member member
-    ) {
+    ) throws MovieNotFoundException {
         Screening screening = screeningService.findByScreeningId(screeningId);
         reservationService.reserve(screening, member, requestDto.getAdultCount(), requestDto.getChildCount());
         return ResponseEntity.ok(apiResponse("success"));

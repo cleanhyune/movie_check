@@ -16,4 +16,5 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<Reservation> reservationMovies = new ArrayList<>();
+
 }
