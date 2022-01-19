@@ -30,8 +30,7 @@ public class MovieRepositoryImpl implements CustomMovieRepository {
 
     @Override
     public List<MovieDto> findMovies() {
-        return queryFactory.select(defaultSelect).from(movie)
-                .fetch();
+        return queryFactory.select(defaultSelect).from(movie).fetch();
     }
 
     @Override

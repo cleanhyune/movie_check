@@ -27,12 +27,19 @@ public class Screening {
     private LocalDateTime endTime;
 
     public Reservation reserve(Member member, Long adultCount, Long childCount) {
-        return Reservation.builder().build();
+        return Reservation.builder()
+                .adultCount(adultCount)
+                .childCount(childCount)
+                .totalFee(getTotalFee(adultCount, childCount))
+                .screening(this)
+                .reservationDate(LocalDateTime.now())
+                .member(member)
+                .build();
     }
 
     public Long getTotalFee(Long adultCount, Long childCount) {
         Long fee = movie.getFee();
-        return fee * adultCount;
+        return (fee * adultCount) + (long)((fee * 0.9) * childCount) ;
     }
 
 }
