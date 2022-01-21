@@ -5,10 +5,10 @@ import lombok.Builder;
 import lombok.Generated;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Builder
@@ -17,14 +17,15 @@ import java.time.LocalDateTime;
 public class Screening {
 
     @Id
-    @Generated
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="screening_seq_gen")
+    @SequenceGenerator(name="screening_seq_gen", sequenceName="SCREENING_SEQ")
     private Long screeningId;
 
     @OneToOne
     private Movie movie;
-    private LocalDateTime runningDay;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private LocalDate runningDay;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
     public Reservation reserve(Member member, Long adultCount, Long childCount) {
         return Reservation.builder()

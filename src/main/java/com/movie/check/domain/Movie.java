@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Data
 @Entity
@@ -22,7 +24,7 @@ public class Movie {
     private Long movieId;
 
     private String title;
-    private LocalDateTime runningTime;
+    private LocalTime runningTime;
     private String synopsis;
 
     private Long fee;
@@ -30,7 +32,7 @@ public class Movie {
     @Enumerated(EnumType.STRING)
     private Jenre jenre;
 
-    private LocalDateTime openingDate;
+    private LocalDate openingDate;
     private String director;
 
 }

@@ -16,4 +16,8 @@ public class ScreeningService {
         return screeningDao.findById(screeningId).orElseThrow(() -> new MovieNotFoundException("선택한 예약시간이 존재하지 않습니다."));
     }
 
+    public void save(Screening screening) {
+        screeningDao.save(screening);
+    }
+
 }

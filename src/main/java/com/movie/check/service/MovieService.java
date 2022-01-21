@@ -4,6 +4,7 @@ import com.movie.check.configuration.customError.MovieNotFoundException;
 import com.movie.check.domain.Movie;
 import com.movie.check.dto.MovieDto;
 import com.movie.check.repository.movie.MovieRepository;
+import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,11 @@ public class MovieService {
 
     public List<MovieDto> findMovies() {
         return movieRepository.findMovies();
+    }
+
+    public Movie getMovieById(Long id) throws NotFoundException {
+        return movieRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(""));
     }
 
     public MovieDto findMovieById(Long movieId) throws MovieNotFoundException {
