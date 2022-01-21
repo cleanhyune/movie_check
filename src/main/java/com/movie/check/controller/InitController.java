@@ -62,7 +62,16 @@ public class InitController {
                     .openingDate(LocalDate.of(2021, 10, 14))
                     .director("hyune")
                     .build();
-            movieService.save(movie);
+            Movie movie2 = Movie.builder()
+                    .title(title)
+                    .runningTime(LocalTime.of(2, 30))
+                    .synopsis(title + "is nice actor")
+                    .fee(10000L)
+                    .jenre(Jenre.HERO)
+                    .openingDate(LocalDate.of(2021, 10, 14))
+                    .director("hyune")
+                    .build();
+            movieService.save(movie2);
         }
     }
 
